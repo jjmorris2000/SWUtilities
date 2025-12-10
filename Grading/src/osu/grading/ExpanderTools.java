@@ -70,12 +70,11 @@ public class ExpanderTools {
         try (ZipInputStream zis = new ZipInputStream(is)) {
             ZipEntry ent = zis.getNextEntry();
             while (ent != null) {
-                Path p = outDir.resolve(prefix + "_" + ent.getName());
-                Path projectPath = p.getParent();
-
+                Path p1 = Paths.get(ent.getName()).getName(0);
+                Path projectPath = outDir.resolve(prefix + "_" + p1.toString());
                 createProjectSpace(projectPath);
+                Path p = outDir.resolve(prefix + "_" + ent.getName());
                 if (Files.exists(p.getParent())) {
-
                     String name = p.getFileName().toString();
                     if (name.endsWith(".java") || files.contains(name)) {
                         System.out.println("Expanding --> " + p);
@@ -125,11 +124,21 @@ public class ExpanderTools {
         }
     }
 
+    /**
+     * Fixes the project files to include the name of the team or individual on
+     * the project folder so the name in the .project file matches the name on
+     * the project folder.
+     *
+     * @param zipOutputDir
+     *            directory where projects were expanded to
+     */
     public static void updateProjectFiles(Path zipOutputDir) {
         // open output dir
         for (File fileEntry : zipOutputDir.toFile().listFiles()) {
             // cycle through all dirs in the output dir
-            String prefix = fileEntry.toPath().getName(2).toString().split("_")[0];
+            // get the prefix off the last element of the directory name
+            String prefix = fileEntry.toPath().getFileName().toString().split("_")[0];
+//            String prefix = fileEntry.toPath().getName(2).toString().split("_")[0];
             if (fileEntry.isDirectory()) {
                 for (File project : fileEntry
                         .listFiles((dir, name) -> name.equals(".project"))) {
