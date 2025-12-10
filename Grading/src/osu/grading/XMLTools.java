@@ -30,6 +30,15 @@ public class XMLTools {
     private XMLTools() {
     }
 
+    /**
+     * Wrapper method to read an XML document from a file.
+     *
+     * @param p
+     *            path to the XML file
+     * @return XML Document parsed from p
+     * @throws IllegalArgumentException
+     *             if the file does not exist or is malformed
+     */
     public static Document getXMLDoc(Path p) throws IllegalArgumentException {
         Document document;
         try (InputStream is = new BufferedInputStream(new FileInputStream(p.toFile()))) {
@@ -51,6 +60,16 @@ public class XMLTools {
         return document;
     }
 
+    /**
+     * Wrapper method to write an XML document to a file.
+     *
+     * @param document
+     *            XML doc to write to the file
+     * @param p
+     *            Path to output file.
+     * @throws IllegalArgumentException
+     *             if the file cannot be written to or if the XML has issues
+     */
     public static void writeXMLDoc(Document document, Path p)
             throws IllegalArgumentException {
         try (FileOutputStream os = new FileOutputStream(p.toFile())) {

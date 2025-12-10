@@ -138,7 +138,7 @@ public class ExpanderTools {
             // cycle through all dirs in the output dir
             // get the prefix off the last element of the directory name
             String prefix = fileEntry.toPath().getFileName().toString().split("_")[0];
-//            String prefix = fileEntry.toPath().getName(2).toString().split("_")[0];
+
             if (fileEntry.isDirectory()) {
                 for (File project : fileEntry
                         .listFiles((dir, name) -> name.equals(".project"))) {

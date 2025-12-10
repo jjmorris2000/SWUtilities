@@ -11,6 +11,16 @@ public class ZipTools {
     private ZipTools() {
     }
 
+    /**
+     * Wrapper method to write an arbitrary zip input stream to a file.
+     *
+     * @param p
+     *            path to output file
+     * @param zis
+     *            input stream to write to the file
+     * @throws IOException
+     *             if the output file cannot be written
+     */
     public static void writeZstreamToFile(Path p, ZipInputStream zis) throws IOException {
         byte[] buffer = new byte[2048];
         try (BufferedOutputStream bos = new BufferedOutputStream(
