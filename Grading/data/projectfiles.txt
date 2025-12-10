@@ -1,0 +1,13 @@
+.settings/
+bin/
+data/
+doc/
+lib/
+src/
+test/
+.checkstyle
+.classpath
+.project
+.settings/org.eclipse.core.resources.prefs
+src/*.java
+test/*.java
