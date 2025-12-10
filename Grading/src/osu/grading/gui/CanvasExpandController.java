@@ -28,7 +28,7 @@ public class CanvasExpandController {
         System.out.print("Expanding ");
         System.out.print(this.modelInputArchive);
         System.out.print(" to ");
-        System.out.print(this.modelOutputDir);
+        System.out.println(this.modelOutputDir);
         Path zipfile = Paths.get(this.modelInputArchive);
         if (!zipfile.toFile().exists() || zipfile.toFile().isDirectory()) {
             System.out.println("Error - zipfile must be an existing archive file.");

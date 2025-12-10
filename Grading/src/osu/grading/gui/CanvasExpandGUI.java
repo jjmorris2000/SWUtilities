@@ -42,7 +42,7 @@ public class CanvasExpandGUI extends JFrame implements ActionListener {
     private JTextArea loggingArea;
 
     // File Chooser
-    private final JFileChooser fc = new JFileChooser();
+    private final JFileChooser fc;
 
     public CanvasExpandGUI() {
         super("Canvas Expander");
@@ -54,6 +54,7 @@ public class CanvasExpandGUI extends JFrame implements ActionListener {
             e.printStackTrace();
             System.exit(ABORT);
         }
+        this.fc = new JFileChooser();
 
         this.setLayout(new GridBagLayout());
 

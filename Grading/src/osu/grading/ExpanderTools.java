@@ -143,11 +143,12 @@ public class ExpanderTools {
                 for (File project : fileEntry
                         .listFiles((dir, name) -> name.equals(".project"))) {
                     System.out.println("Updating .project file: " + project);
+                    // send each .project file to the update function
                     XMLTools.updateProjectFile(prefix, project.toPath());
                 }
 
             }
-            // send each .project file to the update function
+
         }
     }
 
