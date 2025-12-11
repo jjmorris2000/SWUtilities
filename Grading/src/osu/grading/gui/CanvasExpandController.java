@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import osu.grading.ExpanderTools;
+import osu.grading.ZipTools.ZipToolsException;
 
 public class CanvasExpandController {
 
@@ -35,12 +36,21 @@ public class CanvasExpandController {
             return;
         }
         Path outDir = Paths.get(this.modelOutputDir);
-        if (!outDir.toFile().exists() || !outDir.toFile().isDirectory()) {
-            System.out.println("Error - output_directory must be an existing directory.");
+        if (!outDir.toFile().exists()) {
+            outDir.toFile().mkdirs();
+        }
+        if (!outDir.toFile().isDirectory()) {
+            System.out.println("Error - output_directory must be a directory.");
             return;
         }
-        ExpanderTools.unzipCanvasFile(zipfile, outDir);
-        ExpanderTools.updateProjectFiles(outDir);
+        try {
+            ExpanderTools.unzipCanvasFile(zipfile, outDir);
+            ExpanderTools.updateProjectFiles(outDir);
+        } catch (ZipToolsException e) {
+            System.err.println("Error reading zipfile.");
+            e.printStackTrace();
+        }
+
     }
 
 }

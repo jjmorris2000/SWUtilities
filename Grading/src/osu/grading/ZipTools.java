@@ -17,6 +17,21 @@ public class ZipTools {
     }
 
     /**
+     * New exception for
+     */
+    public static class ZipToolsException extends Exception {
+
+        /**
+         *
+         */
+        private static final long serialVersionUID = 1L;
+
+        public ZipToolsException(String msg) {
+            super(msg);
+        }
+    }
+
+    /**
      * Wrapper method to write an arbitrary zip input stream to a file.
      *
      * @param p

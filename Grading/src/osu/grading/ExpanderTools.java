@@ -13,6 +13,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
+import osu.grading.ZipTools.ZipToolsException;
+
 /**
  * ExpanderTools - methods to deal with ZIP archives of student work produced by
  * Canvas.
@@ -113,7 +115,8 @@ public class ExpanderTools {
      * @param outputDir
      *            directory to write project folders to
      */
-    public static void unzipCanvasFile(Path zipFile, Path outputDir) {
+    public static void unzipCanvasFile(Path zipFile, Path outputDir)
+            throws ZipToolsException {
         try (ZipFile zFile = new ZipFile(zipFile.toFile())) {
             @SuppressWarnings("unchecked")
             Iterator<ZipEntry> it = (Iterator<ZipEntry>) zFile.stream().iterator();
@@ -130,8 +133,8 @@ public class ExpanderTools {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
-            return;
+            throw new ZipToolsException(
+                    "Error reading from zip file in archive " + zipFile);
         }
     }
 
@@ -177,8 +180,13 @@ public class ExpanderTools {
         Path outPath = Paths.get(zipOutputDir);
         System.out.println(outPath);
 
-        unzipCanvasFile(zipFile, outPath);
-        updateProjectFiles(outPath);
+        try {
+            unzipCanvasFile(zipFile, outPath);
+            updateProjectFiles(outPath);
+        } catch (ZipToolsException e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
