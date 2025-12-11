@@ -6,6 +6,11 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.zip.ZipInputStream;
 
+/**
+ * ZipTools - library to hold convenience methods dealing with ZIP archives.
+ *
+ * @author Jeremy Morris
+ */
 public class ZipTools {
 
     private ZipTools() {

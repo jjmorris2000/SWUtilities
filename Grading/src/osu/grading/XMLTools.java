@@ -25,6 +25,12 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
+/**
+ * A small library of XML tools to make working with Java's DOM libaries a bit
+ * less annoying.
+ *
+ * @author Jeremy Morris
+ */
 public class XMLTools {
 
     private XMLTools() {

@@ -7,6 +7,12 @@ import java.util.Arrays;
 import osu.grading.gui.CanvasExpandController;
 import osu.grading.gui.CanvasExpandGUI;
 
+/**
+ * CanvasExpand - a program to automatically expand Canvas zip submission
+ * archives into separate folders.
+ *
+ * @author Jeremy Morris
+ */
 public class CanvasExpand {
 
     public static void main(String[] args) {

@@ -21,6 +21,16 @@ import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+/**
+ * CanvasExpandGUI - Application View for an expander GUI for Canvas archives.
+ *
+ * The design includs just two text fields - a field for entering the location
+ * of the ZIP archive and another for the destination directory to unzip all of
+ * the student work into in separate directories. A logging window shows the
+ * same progress that the command-line version shows.
+ *
+ * @author Jeremy Morris
+ */
 public class CanvasExpandGUI extends JFrame implements ActionListener {
 
     /**
@@ -44,6 +54,9 @@ public class CanvasExpandGUI extends JFrame implements ActionListener {
     // File Chooser
     private final JFileChooser fc;
 
+    /**
+     * constructor
+     */
     public CanvasExpandGUI() {
         super("Canvas Expander");
         try {
@@ -120,6 +133,13 @@ public class CanvasExpandGUI extends JFrame implements ActionListener {
         this.setVisible(true);
     }
 
+    /**
+     * Registers the controller as an observer so it can be updated when the
+     * view changes.
+     *
+     * @param controller
+     *            the controller object to be updated
+     */
     public void registerController(CanvasExpandController controller) {
         this.controller = controller;
     }

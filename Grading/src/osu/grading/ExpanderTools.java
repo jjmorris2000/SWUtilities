@@ -13,18 +13,29 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
 
+/**
+ * ExpanderTools - methods to deal with ZIP archives of student work produced by
+ * Canvas.
+ *
+ * @author Jeremy Morris
+ */
 public class ExpanderTools {
 
+    /**
+     * list of files to expand along with any .java files.
+     */
     private static Set<String> files = new HashSet<>();
     static {
-        files.add(".java");
         files.add(".checkstyle");
         files.add(".project");
         files.add(".classpath");
-        files.add(".settings/org.eclipse.core.resources.prefs");
+        files.add("org.eclipse.core.resources.prefs");
 
     }
 
+    /**
+     * List of project directories that must be created.
+     */
     private static Set<String> dirs = new HashSet<>();
     static {
         dirs.add(".settings/");
@@ -152,6 +163,12 @@ public class ExpanderTools {
         }
     }
 
+    /**
+     * Test main program
+     *
+     * @param args
+     *            - ignored
+     */
     public static void main(String[] args) {
         String zipFname = "data/submissions.zip";
         String zipOutputDir = "data/output/";
